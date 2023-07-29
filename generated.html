@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Webcam Canvas</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    .relative {
+      position: relative;
+    }
+    .absolute {
+      position: absolute;
+    }
+    .w-screen {
+      width: 100%;
+    }
+    .h-full {
+      height: 100%;
+    }
+    .top {
+      top: 20%;
+    }
+    .left {
+      left: 10%;
+    }
+    .right {
+      right: 10%;
+    }
+    .bg-blue-500 {
+      background-color: #3B82F6;
+    }
+    .text-center {
+      text-align: center;
+    }
+    .text-xl {
+      font-size: 1.25rem;
+    }
+    .tracking-wide {
+      letter-spacing: 0.1em;
+    }
+    .top-4 {
+      top: 4px;
+    }
+    .w-32 {
+      width: 32px;
+    }
+    .h-32 {
+      height: 32px;
+    }
+    .left  {
+      left: 4%;
+    }
+  </style>
+</head>
+<body>
+  <div class="relative">
+    <!-- Canvas -->
+    <canvas
+      id="canvas"
+      width="800"
+      height="600"
+      class="w-screen h-full"
+    ></canvas>
+
+    <div class="absolute top-[20%] left-[10%]">
+      <!-- Left Video Preview -->
+
+      <iframe src="https://clickindia.streamway.in:5443/LiveApp/play.html?id=streamId_ZofrFqTtZ&playOrder=webrtc" frameborder="0" allowfullscreen></iframe>
+      <p class="text-center text-xl tracking-wide bg-blue-500">host1</p>
+    </div>
+
+    <div class="absolute top-[20%] right-[10%] bg-blue-500">
+      <!-- Right Video Preview -->
+      <iframe src="https://clickindia.streamway.in:5443/LiveApp/play.html?id=can1&playOrder=webrtc" frameborder="0" allowfullscreen></iframe>
+      <p class="text-center text-xl tracking-wide">host2</p>
+    </div>
+
+    <!-- Logo Image -->
+    <img
+      src="../../Images/Logo.png"
+      alt="Logo"
+      class="absolute top-4 w-32 h-32 left-[4%]"
+    />
+  </div>
+
+  <script>
+    // Load background image onto the canvas
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    const backgroundImage = new Image();
+    backgroundImage.src = '../../Images/stream-background.jpg';
+    backgroundImage.onload = () => {
+      ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
+    };
+  </script>
+</body>
+</html>
